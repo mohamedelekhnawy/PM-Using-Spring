@@ -1,0 +1,20 @@
+### Test - Get Non-Existent Patient (Should Return 404)
+GET http://localhost:8080/api/patients/00000000-0000-0000-0000-000000000000
+Accept: application/json
+
+###
+
+### Test - Update Non-Existent Patient (Should Return 404)
+PUT http://localhost:8080/api/patients/00000000-0000-0000-0000-000000000000
+Content-Type: application/json
+
+{
+  "name": "Test Update"
+}
+
+###
+
+### Test - Delete Non-Existent Patient (Should Return 404)
+DELETE http://localhost:8080/api/patients/00000000-0000-0000-0000-000000000000
+
+###

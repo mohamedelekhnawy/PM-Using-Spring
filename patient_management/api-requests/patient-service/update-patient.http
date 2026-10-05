@@ -1,0 +1,34 @@
+### Update Patient - Full Update
+PUT http://localhost:8080/api/patients/{{patientId}}
+Content-Type: application/json
+
+{
+  "name": "Ahmed Mohamed Updated",
+  "email": "ahmed.updated@example.com",
+  "phoneNumber": "+201234567899",
+  "dateOfBirth": "1990-05-15",
+  "address": "456 New Street, Cairo, Egypt"
+}
+
+###
+
+### Update Patient - Partial Update (Email only)
+PUT http://localhost:8080/api/patients/{{patientId}}
+Content-Type: application/json
+
+{
+  "email": "ahmed.newemail@example.com"
+}
+
+###
+
+### Update Patient - Partial Update (Name and Phone)
+PUT http://localhost:8080/api/patients/{{patientId}}
+Content-Type: application/json
+
+{
+  "name": "Updated Name",
+  "phoneNumber": "+201999999999"
+}
+
+###

@@ -1,0 +1,4 @@
+### Delete Patient
+DELETE http://localhost:8080/api/patients/{{patientId}}
+
+###

@@ -1,0 +1,13 @@
+### Create Patient
+POST http://localhost:8080/api/patients
+Content-Type: application/json
+
+{
+  "name": "Ahmed Mohamed",
+  "email": "ahmed.mohamed@example.com",
+  "phoneNumber": "+201234567890",
+  "dateOfBirth": "1990-05-15",
+  "address": "123 Main Street, Cairo, Egypt"
+}
+
+###

@@ -1,0 +1,5 @@
+### Get All Patients
+GET http://localhost:8080/api/patients
+Accept: application/json
+
+###
