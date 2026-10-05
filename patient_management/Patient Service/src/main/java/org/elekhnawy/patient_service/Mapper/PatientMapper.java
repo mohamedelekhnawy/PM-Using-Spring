@@ -42,19 +42,19 @@ public class PatientMapper {
     }
     
     public static void updateEntity(Patient patient, PatientRequestDto requestDto) {
-        if (requestDto.getName() != null && !requestDto.getName().isBlank()) {
+        if (requestDto.getName() != null && !requestDto.getName().trim().isEmpty()) {
             patient.setName(requestDto.getName());
         }
-        if (requestDto.getEmail() != null && !requestDto.getEmail().isBlank()) {
+        if (requestDto.getEmail() != null && !requestDto.getEmail().trim().isEmpty()) {
             patient.setEmail(requestDto.getEmail());
         }
-        if (requestDto.getPhoneNumber() != null && !requestDto.getPhoneNumber().isBlank()) {
+        if (requestDto.getPhoneNumber() != null && !requestDto.getPhoneNumber().trim().isEmpty()) {
             patient.setPhoneNumber(requestDto.getPhoneNumber());
         }
-        if (requestDto.getAddress() != null && !requestDto.getAddress().isBlank()) {
+        if (requestDto.getAddress() != null && !requestDto.getAddress().trim().isEmpty()) {
             patient.setAddress(requestDto.getAddress());
         }
-        if (requestDto.getDateOfBirth() != null && !requestDto.getDateOfBirth().isBlank()) {
+        if (requestDto.getDateOfBirth() != null && !requestDto.getDateOfBirth().trim().isEmpty()) {
             try {
                 LocalDate dateOfBirth = LocalDate.parse(requestDto.getDateOfBirth(), DATE_FORMATTER);
                 patient.setDateOfBirth(dateOfBirth);

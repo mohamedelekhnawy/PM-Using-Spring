@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientService {
@@ -25,7 +26,7 @@ public class PatientService {
         List<Patient> patients = patientRepository.findAll();
         return patients.stream()
                 .map(PatientMapper::ToDto)
-                .toList();
+                .collect(Collectors.toList());
     }
     
     public PatientResponseDto getPatientById(UUID id) {
@@ -50,7 +51,7 @@ public class PatientService {
         Patient patient = patientRepository.findById(id)
                 .orElseThrow(() -> new PatientNotFoundException("Patient not found with id: " + id));
         
-        if (requestDto.getEmail() != null && !requestDto.getEmail().isBlank()) {
+        if (requestDto.getEmail() != null && !requestDto.getEmail().trim().isEmpty()) {
             if (patientRepository.existsByEmailAndIdNot(requestDto.getEmail(), id)) {
                 throw new EmailAlreadyExistsException("Email already exists: " + requestDto.getEmail());
             }
