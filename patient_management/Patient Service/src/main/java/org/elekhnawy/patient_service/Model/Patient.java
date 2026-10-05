@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Table(name = "patients")
+@Table(name = "patients", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "email")
+})
 public class Patient {
 
     @Id
