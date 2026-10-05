@@ -1,5 +1,8 @@
 package org.elekhnawy.patient_service.Dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"id", "name", "email", "phoneNumber", "dateOfBirth", "address"})
 public class PatientResponseDto {
     private String id;
     private String name;

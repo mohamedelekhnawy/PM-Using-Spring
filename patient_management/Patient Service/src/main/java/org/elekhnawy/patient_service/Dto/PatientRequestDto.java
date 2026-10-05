@@ -1,9 +1,11 @@
 package org.elekhnawy.patient_service.Dto;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.validation.constraints.*;
 import org.elekhnawy.patient_service.Validation.OnCreate;
 import org.elekhnawy.patient_service.Validation.OnUpdate;
 
+@JsonPropertyOrder({"name", "email", "phoneNumber", "dateOfBirth", "address"})
 public class PatientRequestDto {
     
     @NotBlank(message = "Name is required", groups = OnCreate.class)
