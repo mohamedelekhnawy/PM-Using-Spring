@@ -1,5 +1,6 @@
 package org.elekhnawy.patient_service.Service;
 
+import billing.BillingServiceGrpc;
 import org.elekhnawy.patient_service.Dto.PatientRequestDto;
 import org.elekhnawy.patient_service.Dto.PatientResponseDto;
 import org.elekhnawy.patient_service.Exception.EmailAlreadyExistsException;
@@ -7,6 +8,7 @@ import org.elekhnawy.patient_service.Exception.PatientNotFoundException;
 import org.elekhnawy.patient_service.Mapper.PatientMapper;
 import org.elekhnawy.patient_service.Model.Patient;
 import org.elekhnawy.patient_service.Repository.PatientRepository;
+import org.elekhnawy.patient_service.grpc.BillingServiceGrpcClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,9 +19,11 @@ import java.util.stream.Collectors;
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
+    private final BillingServiceGrpcClient billingServiceGrpcClient;
 
-    public PatientService(PatientRepository patientRepository){
+    public PatientService(PatientRepository patientRepository , BillingServiceGrpcClient billingServiceGrpcClient){
         this.patientRepository = patientRepository;
+        this.billingServiceGrpcClient=billingServiceGrpcClient;
     }
     
     public List<PatientResponseDto> getAllPatients(){
@@ -40,9 +44,13 @@ public class PatientService {
         if (patientRepository.existsByEmail(requestDto.getEmail())) {
             throw new EmailAlreadyExistsException("Email already exists: " + requestDto.getEmail());
         }
-        
+
         Patient patient = PatientMapper.ToEntity(requestDto);
         Patient savedPatient = patientRepository.save(patient);
+
+        billingServiceGrpcClient.createBillingAccount(savedPatient.getId().toString(),
+                savedPatient.getName(), savedPatient.getEmail());
+
         return PatientMapper.ToDto(savedPatient);
     }
     
