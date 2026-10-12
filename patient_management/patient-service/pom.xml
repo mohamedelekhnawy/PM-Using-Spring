@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.elekhnawy</groupId>
-    <artifactId>Patient_Service</artifactId>
+    <artifactId>patient-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Patient Service</name>
     <description>Patient Service</description>

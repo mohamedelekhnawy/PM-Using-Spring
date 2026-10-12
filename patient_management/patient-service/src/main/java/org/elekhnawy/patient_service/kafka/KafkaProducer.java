@@ -4,6 +4,7 @@ import org.elekhnawy.patient_service.Model.Patient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import patient.events.PatientEvent;
 
